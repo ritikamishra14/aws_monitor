@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 {% block page_content %}
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +25,7 @@
     table,
     td,
     th {
-        border: 1px solid black;
+        border: 1px solid #000000;
         text-align: center;
     }
 
@@ -97,11 +95,8 @@
 
     <div>
         <div style = "text-align: center; ">
-            <img src="{% static 'img.png' %}" alt="Italian Trulli" class="center" width="200px">
+            <img src="{% static 'img.png' %}"  class="center" width="200px">
         </div>
-
-
-
 
 
         <p><B><i>EC2 count for selected range</i></B></p>
@@ -110,15 +105,14 @@
         <div class="ec2-conta">
             <table border="5">
 
-            {% for x in context %}
+            {% for x in context.0 %}
             <tr>
-                <td bgcolor="#ffe4c4">{{  x }}</td>
+                <td bgcolor="#ffe4c4">{{x.0}}   {{x.1 }}</td>
                </tr>
              {% endfor %}
             </table>
 
         </div>
-
 
         <p><b><i>RDS count for selected range</i></b></p>
 
@@ -126,9 +120,9 @@
         <div class="rds-conta">
 
           <table border="5">
-            {% for x in context2 %}
+            {% for x in context.1 %}
               <tr>
-                  <td bgcolor="#ffe4c4">{{x}}</td>
+                  <td bgcolor="#ffe4c4">{{x.0}}   {{ x.1 }}</td>
               </tr>
              {% endfor %}
 

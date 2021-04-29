@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import pip._vendor.cachecontrol.caches
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -22,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'nng4yev7uu&+6f#3oq46#eaodw8f*z#-#d319bj&ue=3#f_k@k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -85,14 +88,10 @@ DATABASES = {
     }
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-        'LOCATION': 'my_cache_table',
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1;11211',
     }
 }
-
-
-
-
 
 
 # Password validation
@@ -168,6 +167,7 @@ STATIC_URL = '/static/'
 # Add these new lines
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+    'static/',
 )
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
